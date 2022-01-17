@@ -1,0 +1,18 @@
+.title-align-center .moomoo-elementor-extension .moomoo-banner-post .wrap-banner-post h1{text-align:center;}
+.title-align-left .moomoo-elementor-extension .moomoo-banner-post .wrap-banner-post h1{text-align:left}
+.title-align-right .moomoo-elementor-extension .moomoo-banner-post .wrap-banner-post h1{text-align:right}
+
+.moomoo-elementor-extension .moomoo-banner-post .wrap-banner-post .center-box img{ max-width: 100%}
+
+
+@media(max-width:768px){
+	.title-align-tablet-center .moomoo-elementor-extension .moomoo-banner-post .wrap-banner-post h1{text-align:center;}
+	.title-align-tablet-center .moomoo-elementor-extension .moomoo-banner-post .wrap-banner-post h1{text-align:left}
+	.title-align-tablet-center .moomoo-elementor-extension .moomoo-banner-post .wrap-banner-post h1{text-align:right}
+}
+@media(max-width:520px){
+	.moomoo-elementor-extension .moomoo-banner-post .wrap-banner-post .center-box h1{margin-top: 15px !important;}
+	.title-align-mobile-center .moomoo-elementor-extension .moomoo-banner-post .wrap-banner-post h1{text-align:center;}
+	.title-align-mobile-left .moomoo-elementor-extension .moomoo-banner-post .wrap-banner-post h1{text-align:left}
+	.title-align-mobile-right .moomoo-elementor-extension .moomoo-banner-post .wrap-banner-post h1{text-align:right}
+}

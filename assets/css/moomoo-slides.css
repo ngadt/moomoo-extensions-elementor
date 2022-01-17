@@ -1,0 +1,34 @@
+.mm-wrap-content{display:flex;}
+.mm-wrap-content>div{width:50%}
+.swiper-slide-text{display:flex;}
+.swiper-slide-image{line-height:0}
+.moomoo-swiper-container a.swiper-slide-text{display: flex}
+.elementor--v-position-top .swiper-slide-text{align-items:self-start;}
+.elementor--v-position-middle .swiper-slide-text{align-items:center;}
+.elementor--v-position-bottom .swiper-slide-text{align-items:flex-end;}
+.image-position-topp .mm-wrap-content{flex-direction:column;align-items:center;}
+.image-position-left .mm-wrap-content{flex-direction:row;}
+.image-position-right .mm-wrap-content .swiper-slide-image{order:2;align-items:center;}
+.image-position-bottom .mm-wrap-content{flex-direction:column;align-items:center;}
+.image-position-bottom .mm-wrap-content .swiper-slide-text{order:-1;}
+.moomoo-swiper-container .elementor-slide-button{border:2px solid #fff;color:#fff;background:transparent;display:inline-block;}
+@media(max-width:768px) and (min-width:412px){
+	.image-position--tablettopp .mm-wrap-content{flex-direction:column;align-items:center;}
+	.image-position--tablettopp .mm-wrap-content .swiper-slide-image{order:-1;}
+	.image-position--tabletleft .mm-wrap-content{flex-direction:row;}
+	.image-position--tabletleft .mm-wrap-content .swiper-slide-image{order:-1;}
+	.image-position--tabletright .mm-wrap-content .swiper-slide-image{order:2;align-items:center;}
+	.image-position--tabletbottom .mm-wrap-content{flex-direction:column;align-items:center;}
+	.image-position--tabletbottom .mm-wrap-content .swiper-slide-text{order:-1;}
+	.image-position--tabletbottom .mm-wrap-content>div,.image-position--tablettopp .mm-wrap-content>div{width:100%}
+}
+@media(max-width:414px){
+	.image-position--mobiletopp .mm-wrap-content{flex-direction:column;align-items:center;}
+	.image-position--mobiletopp .mm-wrap-content .swiper-slide-image{order:-1;}
+	.image-position--mobileleft .mm-wrap-content{flex-direction:row;}
+	.image-position--mobileleft .mm-wrap-content .swiper-slide-image{order:-1;}
+	.image-position--mobileright .mm-wrap-content .swiper-slide-image{order:2;align-items:center;}
+	.image-position--mobilebottom .mm-wrap-content{flex-direction:column;align-items:center;}
+	.image-position--mobilebottom .mm-wrap-content .swiper-slide-text{order:-1;}
+	.image-position--mobilebottom .mm-wrap-content>div,.image-position--mobiletopp .mm-wrap-content>div{width:100%}
+}

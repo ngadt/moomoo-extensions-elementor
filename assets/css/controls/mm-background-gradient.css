@@ -1,0 +1,26 @@
+.list-color {display: flex}
+.moomoo-background-gradient-control .list-color li{
+    text-align: center;
+    margin: 10px 0;
+    position: relative;
+}
+.moomoo-background-gradient-control .wp-picker-container .wp-color-result.button{padding-left: 0;width: 34px;cursor: pointer;}
+.moomoo-background-gradient-control button span.wp-color-result-text {display: none;padding-left: 0;}
+
+.moomoo-background-gradient-control .wp-picker-holder {
+    position: absolute;
+    z-index: 99;
+    top: 71px;
+}
+.moomoo-background-gradient-control span.wp-picker-input-wrap label input{
+    min-width: 150px;
+  
+}
+.moomoo-background-gradient-control span.wp-picker-input-wrap {position:absolute;background: #fff;z-index: 9;top: 40px;width: 257px;left: 0;}
+.moomoo-background-gradient-control .wp-picker-containe span.wp-picker-input-wrap {display:flex }
+.moomoo-background-gradient-control span.wp-picker-input-wrap label{
+    
+    float: left;
+   
+}
+.moomoo-background-gradient-control span.wp-picker-input-wrap input{width: 100px;float: left;}

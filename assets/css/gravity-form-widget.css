@@ -1,0 +1,59 @@
+.moomoo-horizontal-radio-yes  .gfield_radio .gchoice, .moomoo-horizontal-radio-yes .gfield_checkbox .gchoice{display:inline !Important; }
+.moomoo-horizontal-radio-yes  .gfield_radio .gchoice label, .moomoo-horizontal-radio-yes .gfield_checkbox .gchoice label{padding-right: 20px}
+.moomoo-desc-below-label-yes  .gfield_radio>div{position:relative;padding-right:0!important;width: 100%;}
+.moomoo-desc-below-label-yes .gfield_description:not(.validation_message){padding-top:0;order:-1;}
+.moomoo-desc-below-label-yes .field_description_below{display:flex;flex-direction:column;}
+.moomoo-desc-below-label-yes div.field_description_below label{order:-2}
+.elementor-widget-moomoo-gravity-form .elementor-widget-container .gchoice input[type="radio"] + label{padding-left: 10px}
+.elementor-widget-moomoo-gravity-form .elementor-widget-container .gchoice input[type="radio"] + label:before{
+    content: '';
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-sizing: border-box !important;
+}
+body .gform_legacy_markup_wrapper ul li.field_description_below div.ginput_container_checkbox,body .gform_legacy_markup_wrapper ul li.field_description_below div.ginput_container_radio{margin-top:0}
+.moomoo-desc-below-label-yes .gform_validation_error  .gfield_description:not(.validation_message){top:45px;}
+.elementor-widget-moomoo-gravity-form .gform_wrapper .gform_body.gform-body .gfield{flex-wrap:nowrap !Important;}
+.elementor-widget-moomoo-gravity-form.moomoo-full-width-pda-yes .gform_wrapper .gform_body.gform-body .gfield >fieldset:last-child{width:100%;}
+.elementor-widget-moomoo-gravity-form.moomoo-full-width-pda-yes .gform_wrapper .gform_body.gform-body .ginput_container.ginput_container_checkbox{min-width:100%;}
+.elementor-widget-moomoo-gravity-form.moomoo-full-width-pda-yes .gform_wrapper .gform_body.gform-body .ginput_container.ginput_container_checkbox .gchoice{width: calc(100%);margin-right:0;padding-right:0;display:flex;align-items:self-start;}
+.elementor-widget-moomoo-gravity-form.moomoo-full-width-pda-yes .gform_wrapper .gform_body.gform-body .ginput_container.ginput_container_checkbox .gchoice input{}
+.elementor-widget-moomoo-gravity-form.moomoo-full-width-pda-yes .gform_wrapper .gform_body.gform-body .ginput_container.ginput_container_checkbox .gchoice .gfield-choice-input+label{max-width:100%;}
+
+.elementor-widget-moomoo-gravity-form .ginput_container.ginput_container_text, 
+.elementor-widget-moomoo-gravity-form .ginput_container.ginput_container_select, 
+.elementor-widget-moomoo-gravity-form .ginput_container.ginput_container_email  {
+    min-width: 100%;
+}
+.elementor-widget-moomoo-gravity-form .gform_footer {
+    padding: 0 !important;
+}
+.gform_wrapper .gf_page_steps{display:flex;cursor:pointer;padding-bottom:0}
+.gform_wrapper .gf_step{margin-right:15px;height:auto;align-items:center;display:flex;padding:15px;margin-bottom:0;justify-content:center;}
+.gform_wrapper .gf_step:last-child{margin-right:0}
+.gform_wrapper span.gf_step_number{display:none!important}
+.gform_wrapper .gf_step.gf_step_active{opacity:1}
+.gform_wrapper .gform_legacy_markup_wrapper .gf_step{opacity:0.2}
+.gform_wrapper form .gform_body input:not([type="radio"]):not([type="checkbox"]):not([type="submit"]):not([type="button"]):not([type="image"]):not([type="file"]),.uael-gf-style .gform_wrapper textarea,.ginput_container select{line-height:24px!important}
+form .gform_page .gform_page_footer input[type=submit]{display:inline-block!important;}
+form .gform_page .gform_page_footer{padding-top:20px!important;}
+.uael-gf-input-size-sm .uael-gf-style .ginput_container select{padding:12px 10px;}
+.gform_wrapper input,.gform_wrapper button{outline:none!important;white-space: normal;}
+body .remove-margin-last-item-true .gform_legacy_markup_wrapper .gform-body>div:last-child ul li.gfield:last-child{margin-top:-6px!important;}
+@media only screen and (min-width:641px){
+	.gform_wrapper .left_label input.large,.gform_wrapper .left_label select.large,.gform_wrapper .right_label input.large,.gform_wrapper .right_label select.large{min-width:100%;}
+	html:not([dir=rtl]) .gform_wrapper ul.gform_fields:not(.top_label) .clear-multi,html:not([dir=rtl]) .gform_wrapper ul.gform_fields:not(.top_label) .gfield_description,html:not([dir=rtl]) .gform_wrapper ul.gform_fields:not(.top_label) .ginput_container:not(.ginput_container_time):not(.ginput_container_date){margin-left:30%;}
+}
+@media(max-width:640px){
+	.gform_wrapper li.gfield.gfield_error.gfield_contains_required div.gfield_description{padding-top:8px}
+	.moomoo-desc-below-label-yes .gform_validation_error  .gfield_description:not(.validation_message){}
+	.moomoo-full-width-pda-yes ul li{display:flex;flex-direction:column}
+	.moomoo-desc-below-label-yes .gfield_description:not(.validation_message){order:0;position:static;margin-top:8px;}
+	.moomoo-full-width-pda-yes ul li .ginput_container{order:2}
+	.gform_wrapper ul.gfield_radio li label{width:100%;max-width:100%;}
+}
+@media(max-width:520px){
+	.elementor-widget-moomoo-gravity-form .gform_wrapper .gform_body.gform-body .gfield{flex-wrap:wrap !Important;}
+}

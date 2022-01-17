@@ -1,0 +1,21 @@
+.elementor-moomoo-post-navigation{display:flex;margin-bottom:25px;justify-content: center;}
+.elementor-moomoo-post-navigation .thumbnail{height:100%;width:100%;object-fit:cover;}
+.elementor-moomoo-post-navigation .flex-box{display:flex;line-height:0;/* align-items: center; */height:100%;}
+.elementor-moomoo-post-navigation .flex-box a{width:50%;min-width:50%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;}
+.elementor-moomoo-post-navigation span{display:block;line-height:45px;color:#a97009;}
+.elementor-moomoo-post-navigation .elementor-moomoo-post-navigation__prev.elementor-moomoo-post-navigation__link  .flex-box>a:first-child,.elementor-moomoo-post-navigation .elementor-moomoo-post-navigation__next.elementor-moomoo-post-navigation__link  .flex-box>a:last-child{padding:5px 20px;}
+.elementor-moomoo-post-navigation .flex-box a:last-child{display:flex;}
+.elementor-moomoo-post-navigation  .elementor-moomoo-post-navigation__separator-wrapper{width:30px;}
+.elementor-moomoo-post-navigation span.moomoo-post-navigation__prev--label{font-size:18px;}
+.elementor-moomoo-post-navigation  span.moomoo-post-navigation__prev--title,.elementor-moomoo-post-navigation  span.moomoo-post-navigation__next--title{font-size:35px;word-break:break-word;color:#000;}
+.elementor-moomoo-post-navigation .icon{font-size:22px;margin-top: 15px;}
+.elementor-moomoo-post-navigation .elementor-moomoo-post-navigation__prev.elementor-moomoo-post-navigation__link,.elementor-moomoo-post-navigation .elementor-moomoo-post-navigation__next.elementor-moomoo-post-navigation__link{border:1px solid #4d494d;width:50%;}
+.elementor-moomoo-post-navigation .elementor-moomoo-post-navigation__prev.elementor-moomoo-post-navigation__link  .flex-box>a:first-child{text-align:right;}
+.elementor-moomoo-post-navigation .elementor-moomoo-post-navigation__next.elementor-moomoo-post-navigation__link  .flex-box>a:last-child{text-align:left;}
+@media(max-width:767px){
+    .elementor-moomoo-post-navigation{padding:15px}
+    .elementor-moomoo-post-navigation .flex-box{flex-direction:column;}
+    .elementor-moomoo-post-navigation{flex-direction:column;}
+    .elementor-moomoo-post-navigation .elementor-moomoo-post-navigation__prev.elementor-moomoo-post-navigation__link,.elementor-moomoo-post-navigation .elementor-moomoo-post-navigation__next.elementor-moomoo-post-navigation__link{width:100%;margin-bottom:20px;}
+    .elementor-moomoo-post-navigation .flex-box>a{width:100%;}
+}
