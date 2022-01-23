@@ -1,8 +1,6 @@
 {
 	"name" : "Moomoo Extensions Elementor",
-	"slug" : "moomoo-extensions-elementor",
-	/*"author" : "<a href='https://rudrastyh.com'>Misha Rudrastyh</a>",
-	"author_profile" : "http://profiles.wordpress.org/rudrastyh",*/
+	"slug" : "moomoo-extensions-elementor",	
 	"version" : "2.0",
 	"requires" : "3.0",
 	"download_url" : "https://github.com/ngadt/moomoo-extensions-elementor",	
