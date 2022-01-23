@@ -3,7 +3,7 @@
 	"slug" : "moomoo-extensions-elementor",	
 	"version" : "2.0",
 	"requires" : "3.0",
-	"download_url" : "https://github.com/ngadt/moomoo-extensions-elementor",	
+	"download_url" : "https://raw.githubusercontent.com/ngadt/moomoo-extensions-elementor/master/moomoo-extensions-elementor.zip",	
 	"slq_name": "MariaDB",
 	"require_sql" : "10.4.1",
 	"requires_php" : "5.2",
