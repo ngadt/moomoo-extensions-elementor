@@ -7,15 +7,15 @@ if( ! class_exists( 'moomooUpgradePlugin' ) ) {
 
 	class moomooUpgradePlugin{
 
-		public $plugin_slug;
+		
 		public $version;
 		public $cache_key;
 		public $cache_allowed;
 
 		public function __construct() {
 
-			$this->plugin_slug = plugin_basename( __DIR__ );
-			$this->version = '1.0';
+			$plugin_data = get_plugin_data( plugin_dir_path(__FILE__).'/'.MM_PLUGIN_NAME_MAIN_FILE);	
+			$this->current_version = $plugin_data['Version'];
 			$this->cache_key = 'moomoo_upgrade';
 			$this->cache_allowed = false;
 
@@ -73,7 +73,7 @@ if( ! class_exists( 'moomooUpgradePlugin' ) ) {
 			}
 
 			// do nothing if it is not our plugin
-			if( $this->plugin_slug !== $args->slug ) {
+			if( MM_PLUGIN_NAME !== $args->slug ) {
 				return false;
 			}
 
@@ -88,11 +88,8 @@ if( ! class_exists( 'moomooUpgradePlugin' ) ) {
 
 			$res->name = $remote->name;
 			$res->slug = $remote->slug;
-			$res->version = $remote->version;
-			$res->tested = $remote->tested;
-			$res->requires = $remote->requires;
-			/*$res->author = $remote->author;*/
-			/*$res->author_profile = $remote->author_profile;*/
+			$res->version = $remote->new_version;
+			$res->requires_wordpress = $remote->requires_wordpress;			
 			$res->download_link = $remote->download_url;
 			$res->trunk = $remote->download_url;
 			$res->requires_php = $remote->requires_php;
@@ -123,20 +120,17 @@ if( ! class_exists( 'moomooUpgradePlugin' ) ) {
 
 			$remote = $this->request();
 			
-
 			if(
 				$remote
-				&& version_compare( $this->version, $remote->version, '<' )
-				&& version_compare( $remote->requires, get_bloginfo( 'version' ), '<' )
+				&& version_compare( $this->current_version, $remote->new_version, '<' )
+				&& version_compare( $remote->requires_wordpress, get_bloginfo( 'version' ), '<' )
 				&& version_compare( $remote->requires_php, PHP_VERSION, '<' )
 			) {
 				$res = new stdClass();
-				$res->slug = $this->plugin_slug;
-				$res->plugin = MM_PLUGIN_NAME_MAIN_FILE; 
-				$res->new_version = $remote->version;
-				/*$res->tested = $remote->tested;*/
+				$res->slug = MM_PLUGIN_NAME;
+				$res->plugin = MM_PLUGIN_NAME.'/'.MM_PLUGIN_NAME_MAIN_FILE; 
+				$res->new_version = $remote->version;				
 				$res->package = $remote->download_url;
-
 				$transient->response[ $res->plugin ] = $res;
 
 	    }
