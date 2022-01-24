@@ -1,8 +1,8 @@
 {
 	"name" : "Moomoo Extensions Elementor",
 	"slug" : "moomoo-extensions-elementor",	
-	"new_version" : "2.0",
-	"requires_wordpress" : "3.0",
+	"new_version" : "1.2.4",
+	"requires_wordpress" : "5.0",
 	"download_url" : "https://github.com/ngadt/moomoo-extensions-elementor",	
 	"slq_name": "MariaDB",
 	"requires_sql" : "10.4.1",

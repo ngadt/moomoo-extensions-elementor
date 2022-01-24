@@ -129,7 +129,7 @@ if( ! class_exists( 'moomooUpgradePlugin' ) ) {
 				$res = new stdClass();
 				$res->slug = MM_PLUGIN_NAME;
 				$res->plugin = MM_PLUGIN_NAME.'/'.MM_PLUGIN_NAME_MAIN_FILE; 
-				$res->new_version = $remote->version;				
+				$res->new_version = $remote->new_version;				
 				$res->package = $remote->download_url;
 				$transient->response[ $res->plugin ] = $res;
 
