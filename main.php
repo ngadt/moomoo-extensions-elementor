@@ -18,7 +18,7 @@ define("MM_PLUGIN_NAME_MAIN_FILE", basename(__FILE__));
 require_once('class/meta-box.php');
 require_once('extensions/column-extended.php');
 require_once('extensions/element-extended.php');
-require_once('upgrade.php');
+require_once('mm-upgrade.php');
 
 
 
