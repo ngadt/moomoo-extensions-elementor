@@ -1459,7 +1459,7 @@ class Elementor_Moomoo_Buttons extends \Elementor\Widget_Base {
 		$settings 		= $this->get_settings_for_display();
 		$button_title   = $settings['button_title'];
 		$style_button   = $settings['style_button'];
-		$button_link    = $settings['button_link']; var_dump($settings);
+		$button_link    = $settings['button_link']; 
 		$emoji_treat 	= $settings['emoji_treat'];
 
 		$url 				= $button_link['url'];
