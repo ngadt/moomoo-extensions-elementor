@@ -497,6 +497,14 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				),
 			)
 		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'border',
+				'label' => esc_html__( 'Border', 'moomoo-extensions-elementor' ),
+				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .ginput_container input',
+			]
+		);
 
 		$this->add_control(
 			'form_input_desc_color',
@@ -732,7 +740,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->add_control(
+/*		$this->add_control(
 			'input_border_color',
 			array(
 				'label'     => __( 'Border Color', 'moomoo-extensions-elementor' ),
@@ -854,7 +862,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 					 {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gfield_radio .gchoice_button.uael-radio-active + .gchoice_label label:before' => 'border-color: {{VALUE}};',
 				),
 			)
-		);
+		);*/
 
 		$this->add_control(
 			'gf_border_active_color_underline',
@@ -1241,7 +1249,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'size_units' => array( 'px', 'em', '%' ),
 				'allowed_dimensions' => array('top', 'bottom'),
 				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .gform_footer' => 'padding: {{TOP}}{{UNIT}} 0 {{BOTTOM}}{{UNIT}} 0',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .gform_footer' => 'margin: {{TOP}}{{UNIT}} 0 {{BOTTOM}}{{UNIT}} 0',
 				),
 				
 			)

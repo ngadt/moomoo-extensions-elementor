@@ -1,6 +1,7 @@
-.moomoo-horizontal-radio-yes  .gfield_radio .gchoice, .moomoo-horizontal-radio-yes .gfield_checkbox .gchoice{display:inline !Important; }
-.moomoo-horizontal-radio-yes  .gfield_radio .gchoice label, .moomoo-horizontal-radio-yes .gfield_checkbox .gchoice label{padding-right: 20px}
-.moomoo-desc-below-label-yes  .gfield_radio>div{position:relative;padding-right:0!important;width: 100%;}
+
+.moomoo-horizontal-radio-yes .gfield_radio .gchoice, .moomoo-horizontal-radio-yes .gfield_checkbox .gchoice{display:inline !Important; }
+.moomoo-horizontal-radio-yes .gfield_radio .gchoice label, .moomoo-horizontal-radio-yes .gfield_checkbox .gchoice label{padding-right: 20px}
+.moomoo-desc-below-label-yes .gfield_radio>div{position:relative;padding-right:0!important;width: 100%;}
 .moomoo-desc-below-label-yes .gfield_description:not(.validation_message){padding-top:0;order:-1;}
 .moomoo-desc-below-label-yes .field_description_below{display:flex;flex-direction:column;}
 .moomoo-desc-below-label-yes div.field_description_below label{order:-2}
@@ -25,7 +26,7 @@ body .gform_legacy_markup_wrapper ul li.field_description_below div.ginput_conta
 .elementor-widget-moomoo-gravity-form .ginput_container.ginput_container_text, 
 .elementor-widget-moomoo-gravity-form .ginput_container.ginput_container_select, 
 .elementor-widget-moomoo-gravity-form .ginput_container.ginput_container_email  {
-    min-width: 100%;
+    width: 100%;
 }
 .elementor-widget-moomoo-gravity-form .gform_footer {
     padding: 0 !important;
