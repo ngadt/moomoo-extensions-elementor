@@ -9,3 +9,6 @@ The Categories Moomoo Extensions Elementor extend some function for Elementor: p
 
 === Version: 1.2.4 ===
 - Add function auto upgrade plugin
+
+=== Version: 1.2.5 ===
+- Fix bug can not load element editor when active plugin
