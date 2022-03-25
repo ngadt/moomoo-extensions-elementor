@@ -37,7 +37,7 @@ class Elementor_Post_Video_Widget extends \Elementor\Widget_Base {
 		wp_enqueue_script('mm-ext-js', plugins_url( 'moomoo-extensions-elementor/assets/js/js.js' ), array(), time());*/
 		
 	}
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'content_section',

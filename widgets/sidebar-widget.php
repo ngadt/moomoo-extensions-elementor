@@ -52,7 +52,7 @@ class Elementor_Sidebar_Widget extends \Elementor\Widget_Base {
 	}
 	
 	
-	protected function _register_controls() {
+	protected function register_controls() {
 
 
 

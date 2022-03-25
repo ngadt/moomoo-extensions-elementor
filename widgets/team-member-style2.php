@@ -38,7 +38,7 @@ class Elementor_Team_Member_Style2_Widget extends \Elementor\Widget_Base {
 
 	
 	
-	protected function _register_controls() {
+	protected function register_controls() {
 
 
 

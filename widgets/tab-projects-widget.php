@@ -540,7 +540,7 @@ class Elementor_Tab_Projects_Widget extends \Elementor\Widget_Base {
 		$this->end_controls_section();
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		
 		
 		$this->register_layout_section_controls();

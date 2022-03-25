@@ -53,7 +53,7 @@ class Elementor_Posts_Widget extends \Elementor\Widget_Base {
 		return $options;
 	}
 	
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->start_controls_section(
 			'content_section',

@@ -43,7 +43,7 @@ class Elementor_Team_Member_Map_Light_Hight_Widget extends \Elementor\Widget_Bas
         wp_enqueue_script('mm-ext-map-light-hight-widget', MM_EXT_ASSET_URL .'/js/map-light-hight-widget.js', array(), time());
         
     }
-    protected function _register_controls() {
+    protected function register_controls() {
 
         
 

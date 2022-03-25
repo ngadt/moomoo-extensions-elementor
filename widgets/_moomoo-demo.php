@@ -39,7 +39,7 @@ class Elementor_Moomoo_Demo extends \Elementor\Widget_Base {
         wp_enqueue_script('mm-demo', MM_EXT_ASSET_URL .'/js/moomoo-demo.js', array('jquery'), time(), true);
         
     }
-    protected function _register_controls() {
+    protected function register_controls() {
        $this->register_content_section_controls();
        $this->register_style_section_controls();
 
@@ -51,6 +51,25 @@ class Elementor_Moomoo_Demo extends \Elementor\Widget_Base {
                 'label' => __( 'Layout', 'moomoo-extensions-elementor' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
+        );
+         /**
+         * select option control.
+         */
+        $this->add_control(
+            'btn_size',
+            array(
+                'label'        => __( 'Size', 'moomoo-extensions-elementor' ),
+                'type'         => Controls_Manager::SELECT,
+                'default'      => 'sm',
+                'options'      => array(
+                    'xs' => __( 'Extra Small', 'moomoo-extensions-elementor' ),
+                    'sm' => __( 'Small', 'moomoo-extensions-elementor' ),
+                    'md' => __( 'Medium', 'moomoo-extensions-elementor' ),
+                    'lg' => __( 'Large', 'moomoo-extensions-elementor' ),
+                    'xl' => __( 'Extra Large', 'moomoo-extensions-elementor' ),
+                ),
+                'prefix_class' => 'uael-gf-btn-size-',
+            )
         );
 
         /**

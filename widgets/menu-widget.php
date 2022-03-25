@@ -52,7 +52,7 @@ class Elementor_Menu_Widget extends \Elementor\Widget_Base {
 	}
 	
 	
-	protected function _register_controls() {
+	protected function register_controls() {
 
 		$this->register_content_section_controls();		
 		$this->register_style_section_controls();

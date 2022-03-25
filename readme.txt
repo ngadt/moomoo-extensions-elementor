@@ -13,3 +13,7 @@ The Categories Moomoo Extensions Elementor extend some function for Elementor: p
 === Version: 1.2.5 ===
 - Fix bug can not load element editor when active plugin
 - Fix and add new function border style for input in GF
+
+=== Version: 1.2.6 ===
+- Update to compatie with elementor ver 3.6.0
+- Update style for Gravity Form

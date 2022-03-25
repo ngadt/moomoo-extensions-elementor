@@ -1448,7 +1448,7 @@ class Elementor_Moomoo_Buttons extends \Elementor\Widget_Base {
 		$this->end_controls_section();
 	}
 	
-	protected function _register_controls() {		
+	protected function register_controls() {		
 		$this->register_content_section_controls();
 		$this->register_style_section_controls();
 	}

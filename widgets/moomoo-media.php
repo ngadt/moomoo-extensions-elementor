@@ -40,7 +40,7 @@ class Elementor_Moomoo_Media extends \Elementor\Widget_Base {
         wp_enqueue_script('mm-media', MM_EXT_ASSET_URL .'/js/moomoo-media.js', array('jquery'), time(), true);
         
     }
-    protected function _register_controls() {
+    protected function register_controls() {
        $this->register_content_section_controls();
        $this->register_style_section_controls();
 
