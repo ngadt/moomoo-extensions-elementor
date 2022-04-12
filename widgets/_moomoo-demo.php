@@ -111,14 +111,23 @@ class Elementor_Moomoo_Demo extends \Elementor\Widget_Base {
                 'placeholder' => __( 'Type your description here', 'moomoo-extensions-elementor' ),
             ]
         );
+        /** border */
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'border',
+                'label' => esc_html__( 'Border', 'plugin-name' ),
+                'selector' => '{{WRAPPER}} .your-class',
+            ]
+        );
 
         /**
          * Select control.
          */
         $this->add_control(
-            'border_style',
+            'select_style',
             [
-                'label' => __( 'Border Style', 'moomoo-extensions-elementor' ),
+                'label' => __( 'Select Style', 'moomoo-extensions-elementor' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'solid',
                 'options' => [
