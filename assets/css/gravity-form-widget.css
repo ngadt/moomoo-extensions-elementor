@@ -50,6 +50,12 @@
 .gform_wrapper .gf_step.gf_step_active{opacity:1}
 .gform_wrapper .gform_legacy_markup_wrapper .gf_step{opacity:0.2}
 
+/** button footer **/
+.elementor-widget-moomoo-gravity-form .gform_wrapper.gravity-theme #field_submit,
+.elementor-widget-moomoo-gravity-form .gform_wrapper.gravity-theme .gform_footer{
+	display: block
+}
+
 @media(min-width: 769px){
 	.moomoo-label-position-left .gform_wrapper form .gfield .ginput_container:not(.ginput_container_checkbox, .ginput_container_radio), 
 	.moomoo-label-position-right .gform_wrapper form .gfield .ginput_container:not(.ginput_container_checkbox, .ginput_container_radio) {width: calc(100% - var(--label-width));}
