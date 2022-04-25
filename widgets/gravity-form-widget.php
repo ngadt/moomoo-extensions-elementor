@@ -38,9 +38,9 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 	}
 
 	public function ndt_enqueue_scripts() {
-
 		
-		wp_enqueue_style('gravity-form-widget', plugins_url('gravityforms/css/basic.min.css'), array(), time());		
+		wp_enqueue_style('mm-gravity-basic-form-widget', plugins_url('gravityforms/assets/css/dist/basic.min.css'), array(), '2.6.1.1');
+		wp_enqueue_style('mm-gravity-theme-widget', plugins_url('gravityforms/assets/css/dist/theme.min.css'), array(), '2.6.1.1');
 		wp_enqueue_style('mm-gravity-form-widget', MM_EXT_ASSET_URL .'/css/gravity-form-widget.css', array(), time());	
 		wp_enqueue_script('mm-gravity-form-widget',MM_EXT_ASSET_URL .'/js/gravity-form-widget.js',array('jquery'), '1.0.0', true);
 		
@@ -517,6 +517,18 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
                         'max' => 100,
                     ],
                 ],
+                'desktop_default' => [
+					'size' => 300,
+					'unit' => 'px',
+				],
+				'tablet_default' => [
+					'size' => 200,
+					'unit' => 'px',
+				],
+				'mobile_default' => [
+					'size' => 100,
+					'unit' => 'px',
+				],
                 'selectors' => [
                     '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container label.gfield_label' => 'width: {{SIZE}}{{UNIT}}',
                     '{{WRAPPER}}.elementor-widget-moomoo-gravity-form' => '--label-width:{{SIZE}}{{UNIT}}'
@@ -826,7 +838,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				),
 				'selectors'  => array(
 					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .ginput_container.ginput_container_radio .gfield_radio label:before'  => 'width:{{SIZE}}{{UNIT}}; min-width:{{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .ginput_container.ginput_container_radio .gfield_radio input'  => 'width:{{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .ginput_container.ginput_container_radio .gfield_radio input[type="radio"]'  => 'width:{{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}',
 				),
 			)
 		);
@@ -2136,7 +2148,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'form_label_typography',
 				'label'    => 'Label Typography',				
-				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container label.gfield_label',
+				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container label.gfield_label, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper.gravity-theme legend',
 			)
 		);
 

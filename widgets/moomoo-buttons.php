@@ -143,16 +143,16 @@ class Elementor_Moomoo_Buttons extends \Elementor\Widget_Base {
 			[
 				'label' => __( 'Button Width', 'spicy' ),
 				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px','vw'],
+				'size_units' => [ 'px','%'],
 				'range' => [
 					'px' => [
 						'min' => 0,
-						'max' => 700,
+						'max' => 1920,
 						'step' => 1,
 					],
-					'vw' => [
+					'%' => [
 						'min' => 0,
-						'max' => 60,
+						'max' => 100,
 						'step' => 1,
 					],
 				],
@@ -173,17 +173,17 @@ class Elementor_Moomoo_Buttons extends \Elementor\Widget_Base {
 				'label' => __( 'Button Height', 'spicy' ),
 				'type' => Controls_Manager::SLIDER,
 				'separator' => 'after',
-				'size_units' => [ 'px','vw'],
+				'size_units' => [ 'px','%'],
 				'range' => [
 					'px' => [
 						'min' => 0,
-						'max' => 200,
+						'max' => 500,
 						'step' => 1,
 					],
-					'vw' => [
+					'%' => [
 						'min' => 0,
-						'max' => 20,
-						'step' => 0.5,
+						'max' => 100,
+						'step' => 1,
 					],
 				],
 				'default' => [
@@ -197,6 +197,17 @@ class Elementor_Moomoo_Buttons extends \Elementor\Widget_Base {
 				],
 			]
 		);
+		$this->add_responsive_control(
+			'button_padding',
+			array(
+				'label'      => __( 'Button Padding', 'moomoo-extensions-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-moomoo-buttons  .moomoo-btn'  => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+				),
+			)
+		);		
 		$this->add_control(
 			'custom_button',
 			[

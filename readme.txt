@@ -21,3 +21,7 @@ The Categories Moomoo Extensions Elementor extend some function for Elementor: p
 === Version: 1.2.7 ===
 - Update to compatie with elementor ver 3.6.0
 - Add new future style for Gravity Form: (button next, prev, mobile responsive)
+
+=== Version: 1.2.8 ===
+- fix bug GF: left, right, input
+- add future Moomoo Button: Button padding

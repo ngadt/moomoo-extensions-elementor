@@ -1,16 +1,16 @@
 {
 	"name" : "Moomoo Extensions Elementor",
 	"slug" : "moomoo-extensions-elementor",	
-	"new_version" : "1.2.7",
+	"new_version" : "1.2.8",
 	"requires_wordpress" : "5.0",
 	"download_url" : "https://raw.githubusercontent.com/ngadt/moomoo-extensions-elementor/master/moomoo-extensions-elementor.zip",	
 	"slq_name": "MariaDB",
 	"requires_sql" : "10.4.1",
 	"requires_php" : "5.2",
-	"last_updated" : "2022-04-12 17:00",
+	"last_updated" : "2022-04-18 17:00",
 	"sections" : {
 		"description" : "Add function auto upgrade plugin",
 		"installation" : "Click the activate button and that's it.",
-		"changelog" : "<h4>2022-01-24</h4><ul><li>---</li></ul>"
+		"changelog" : "<h4>2022-01-24</h4><ul><li>fix bug GF: left, right, input</li><li>add future Moomoo Button: Button padding</li></ul>"
 	}
 }
