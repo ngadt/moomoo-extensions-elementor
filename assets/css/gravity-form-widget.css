@@ -40,7 +40,7 @@
 
 /** custom field */
 .elementor-widget-moomoo-gravity-form .gform_wrapper .gform_body.gform-body .moomoo-custom-field .gfield_checkbox .gchoice {display: flex;}
-.elementor-widget-moomoo-gravity-form .gform_wrapper .gform_body.gform-body .moomoo-custom-field .gfield_checkbox .gchoice input{margin-right: 15px;}
+.elementor-widget-moomoo-gravity-form .gform_wrapper .gform_body.gform-body .moomoo-custom-field .gfield_checkbox .gchoice input{margin-right: 15px;width: 55px;height: 20px;}
 
 /** step bar **/
 .gform_wrapper .gf_page_steps{display:flex;cursor:pointer;margin-bottom:30}
