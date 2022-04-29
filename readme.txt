@@ -25,3 +25,6 @@ The Categories Moomoo Extensions Elementor extend some function for Elementor: p
 === Version: 1.2.8 ===
 - fix bug GF: left, right, input
 - add future Moomoo Button: Button padding
+- remove outline button
+- full width msm erro
+- breakpoint responsive

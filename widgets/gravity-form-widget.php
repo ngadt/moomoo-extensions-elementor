@@ -2161,7 +2161,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				 {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .ginput_container select,
 				 {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .ginput_container .chosen-single,
 				 {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .ginput_container textarea,
-				 {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .uael-gf-select-custom',
+				 {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .uael-gf-select-custom,{{WRAPPER}} .InputContainer .InputElement',
 			)
 		);
 		$this->add_group_control(

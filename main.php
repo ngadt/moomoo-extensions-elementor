@@ -3,7 +3,7 @@
 Plugin Name: Moomoo Extensions Elementor
 Plugin URI: --
 Description: Extensions for Elementor: buttons, media, slides, gravityform style ...
-Version: 1.2.8
+Version: 1.2.9
 Author: Ngadt
 License: GPLv2 or later
 Text Domain: moomoo.sg
