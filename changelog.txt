@@ -7,24 +7,46 @@ License: GPLv2 or later
 
 The Categories Moomoo Extensions Elementor extend some function for Elementor: posts layout, gravityform style, sliders, buttons, media ...
 
-=== Version: 1.2.4 ===
+== Changelog ==
+
+= 1.2.4 =
 - Add function auto upgrade plugin
 
-=== Version: 1.2.5 ===
+= 1.2.5 =
 - Fix bug can not load element editor when active plugin
 - Fix and add new function border style for input in GF
 
-=== Version: 1.2.6 ===
+= 1.2.6 =
 - Update to compatie with elementor ver 3.6.0
 - Update style for Gravity Form
 
-=== Version: 1.2.7 ===
+= 1.2.7 =
 - Update to compatie with elementor ver 3.6.0
 - Add new future style for Gravity Form: (button next, prev, mobile responsive)
 
-=== Version: 1.2.8 ===
+= 1.2.8 =
 - fix bug GF: left, right, input
 - add future Moomoo Button: Button padding
 - remove outline button
 - full width msm erro
 - breakpoint responsive
+
+= 1.2.9 - 2022-05-11 =
+* Update for elementor Moomoo Gravity Form :
+- Fix bug: radio button can not click.
+- Fix bug select input on iphone
+- Fix bug install plugin error
+- Add new feature: Set default value color in Erro Message: #c02b0a.
+- Add new feature: Style "X" icon on title Erro Message
+- Add new feature: Update style feature Error Message
+- Add new feature: Add changelog, Download latest plugin to Plugin
+- Add new feature: Add some effect button : 
+	1. Top to bottom
+	2. Left to right
+	3. Center to Left-Right
+	4. Center to Top-Bottom
+	5. Center to Corners
+	6. Slide Cutting
+	7. Blink
+- Add new feature: style for progress bar
+- Add new feature: review all steps form

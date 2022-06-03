@@ -42,7 +42,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 		wp_enqueue_style('mm-gravity-basic-form-widget', plugins_url('gravityforms/assets/css/dist/basic.min.css'), array(), '2.6.1.1');
 		wp_enqueue_style('mm-gravity-theme-widget', plugins_url('gravityforms/assets/css/dist/theme.min.css'), array(), '2.6.1.1');
 		wp_enqueue_style('mm-gravity-form-widget', MM_EXT_ASSET_URL .'/css/gravity-form-widget.css', array(), time());	
-		wp_enqueue_script('mm-gravity-form-widget',MM_EXT_ASSET_URL .'/js/gravity-form-widget.js',array('jquery'), '1.0.0', true);
+		wp_enqueue_script('mm-gravity-form-widget',MM_EXT_ASSET_URL .'/js/gravity-form-widget.js',array('jquery'), time(), true);
 		
 	}
 	protected function get_gravity_forms() {
@@ -106,11 +106,54 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 		$this->register_button_content_controls();
 		$this->register_button_step_controls();
 		$this->register_error_style_controls();
+		$this->register_advanced_settings();
 		$this->register_spacing_controls();
 		$this->register_typography_controls();
 		
 	}
+	protected function register_advanced_settings() {
+		$this->start_controls_section(
+			'section_advanced_settings',
+			array(
+				'label' => __( 'Advanced Settings', 'moomoo-extensions-elementor' ),
+			)
+		);
+		//Button Effect
+         $this->add_control(
+            'effect_button',
+            array(
+                'label'        => __( 'Effect', 'moomoo-extensions-elementor' ),
+                'type'         => Controls_Manager::SELECT,
+                'default'      => 'none',
+                'options'      => array(     
+                	'none'	   => __( 'None', 'moomoo-extensions-elementor' ),          	
+                    'top_to_bottom' => __( 'Top to bottom', 'moomoo-extensions-elementor' ),
+                    'left_to_right' => __( 'Left to right', 'moomoo-extensions-elementor' ),
+                    'center_to_left_right' => __( 'Center to Left-Right', 'moomoo-extensions-elementor' ),
+                    'center_to_top_bottom' => __( 'Center to Top-Bottom', 'moomoo-extensions-elementor' ),
+                    'center_to_corners' => __( 'Center to Corners', 'moomoo-extensions-elementor' ),
+                    'slide_cutting' => __( 'Slide Cutting', 'moomoo-extensions-elementor' ),
+                    'blink' => __( 'Blink', 'moomoo-extensions-elementor' )
+                ),                
+                'prefix_class' => 'moomoo-button-effect-'
+            )
+        );
 
+		
+	//background color
+	$this->add_control(
+			'effect_bgcolor',
+			array(
+				'label'     => __( 'Background Color', 'moomoo-extensions-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#000',
+				'selectors' => array(
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_footer.top_label .effect:hover:after, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_page_footer.top_label .effect:hover:after,{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_footer.top_label .effect:hover:active, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_page_footer.top_label .effect:hover:active, {{WRAPPER}}.moomoo-button-effect-blink .effect' => 'background-color:{{VALUE}};',
+				),
+			)
+		);
+	$this->end_controls_section();
+	}
 	/**
 	 * Register GForms Styler General Controls.
 	 *
@@ -162,6 +205,19 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 			)
 		);
 		$this->add_control(
+			'mm_reivew_all_step',
+			array(
+				'label'        => __( 'Review all steps form', 'moomoo-extensions-elementor' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'Yes', 'moomoo-extensions-elementor' ),
+				'label_off'    => __( 'No', 'moomoo-extensions-elementor' ),
+				'default'      => 'no',
+				'label_block'  => false,
+				'return_value' => 'yes',
+				'prefix_class' => 'review-all-step-',
+			)
+		);
+		$this->add_control(
 			'form_tab_index_option',
 			array(
 				'label'     => __( 'Set Tabindex Value', 'moomoo-extensions-elementor' ),
@@ -178,7 +234,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 			array(
 				'label'       => __( 'Title & Description', 'moomoo-extensions-elementor' ),
 				'type'        => Controls_Manager::SELECT,
-				'default'     => 'yes',
+				'default'     => 'none',
 				'label_block' => false,
 				'options'     => array(
 					'yes'  => __( 'From Gravity Form', 'moomoo-extensions-elementor' ),
@@ -247,42 +303,8 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'toggle'    => false,
 			)
 		);
-		//Fields Margin
-		$this->add_responsive_control(
-			'fields_padding',
-			array(
-				'label'      => __( 'Space Bettwen Fields', 'moomoo-extensions-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px' ),
-				'allowed_dimensions' => array('top', 'bottom'),
-				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper form .gform_fields .gfield' => 'margin: {{TOP}}{{UNIT}} 0 {{BOTTOM}}{{UNIT}} 0;',
-				),
-			)
-		);
-		//Form Width
-		$this->add_responsive_control(
-            'form_width',
-            [
-                'label' => __( 'Limit Form Width', 'moomoo-extensions-elementor' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 5,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form' => 'width: {{SIZE}}{{UNIT}};'
-                ],
-            ]
-        );
+		
+		
 
 		$this->end_controls_section();
 	}
@@ -298,6 +320,46 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 			'form_fields_control',
 			array(
 				'label' => __( 'Form Fields', 'moomoo-extensions-elementor' ),
+			)
+		);
+		//Form Width
+		$this->add_responsive_control(
+            'form_width',
+            [
+                'label' => __( 'Limit Form Width', 'moomoo-extensions-elementor' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1920,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+						'unit' => 'px',
+						'size' => 800,
+				],
+                'selectors' => [
+                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form' => 'width: {{SIZE}}{{UNIT}};'
+                ],
+            ]
+        );
+		//Fields Margin
+		$this->add_responsive_control(
+			'fields_padding',
+			array(
+				'label'      => __( 'Space Bettwen Fields', 'moomoo-extensions-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px' ),
+				'allowed_dimensions' => array('top', 'bottom'),
+				'selectors'  => array(
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper form .gform_fields .gfield' => 'margin: {{TOP}}{{UNIT}} 0 {{BOTTOM}}{{UNIT}} 0;',
+				),
 			)
 		);
 		$this->add_control(
@@ -954,7 +1016,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 						'size' => 100,
 					],
 					'selectors'  => array(
-						'{{WRAPPER}}.moomoo-horizontal-checkbox-yes .gfield_checkbox>div' => 'width: {{SIZE}}{{UNIT}};',
+						'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gfield_checkbox>div' => 'width: {{SIZE}}{{UNIT}};',
 					),
 				)
 			);
@@ -1032,11 +1094,12 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="submit"], {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="button"]' => 'width: {{SIZE}}{{UNIT}};'
+                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_button' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect' => '--widthInput: {{SIZE}}{{UNIT}}; '
                 ],
             ]
         );
-
+		//button padding
 		$this->add_responsive_control(
 			'gf_button_padding',
 			array(
@@ -1044,11 +1107,11 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="submit"], {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="button"]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				)
 			)
 		);
-
+		//Button margin
 		$this->add_responsive_control(
 			'gf_button_margin',
 			array(
@@ -1057,7 +1120,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'size_units' => array( 'px', 'em', '%' ),
 				'allowed_dimensions' => array('top', 'bottom'),
 				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .gform_footer' => 'margin: {{TOP}}{{UNIT}} 0 {{BOTTOM}}{{UNIT}} 0',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_button' => 'margin: {{TOP}}{{UNIT}} 0 {{BOTTOM}}{{UNIT}} 0',
 				),
 				
 			)
@@ -1071,29 +1134,29 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'label' => __( 'Normal', 'moomoo-extensions-elementor' ),
 			)
 		);
-
+		// Button text color
 		$this->add_control(
 			'button_text_color',
 			array(
 				'label'     => __( 'Text Color', 'moomoo-extensions-elementor' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '',
+				'default'   => '#000',
 				'selectors' => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="submit"], {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="button"],{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gf_progressbar_percentage span, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .percentbar_blue span' => 'color: {{VALUE}};',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_button input, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gf_progressbar_percentage span' => 'color: {{VALUE}};',
 				),
 			)
 		);
-
+		// Button background color
 		$this->add_group_control(
 			Group_Control_Background::get_type(),
 			array(
 				'name'           => 'btn_background_color',
 				'label'          => __( 'Background Color', 'moomoo-extensions-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),				
-				'selector'       => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="submit"], {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="button"], {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gf_progressbar_percentage, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .percentbar_blue',
+				'selector'       => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_button, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gf_progressbar_percentage',
 			)
 		);
-
+		// Button Border
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
@@ -1101,10 +1164,10 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'label'       => __( 'Border', 'moomoo-extensions-elementor' ),
 				'placeholder' => '1px',
 				'default'     => '1px',
-				'selector'    => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="submit"], {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="button"]',
+				'selector'    => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_button',
 			)
 		);
-
+		// Buttonn radius
 		$this->add_responsive_control(
 			'btn_border_radius',
 			array(
@@ -1112,16 +1175,16 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="submit"], {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="button"]' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
-
+		// Button Box Shadow
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'button_box_shadow',
-				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="submit"], {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="button"]',
+				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_button',
 			)
 		);
 
@@ -1139,8 +1202,9 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Text Color', 'moomoo-extensions-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#eee',
 				'selectors' => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="submit"]:hover, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="button"]:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_button:hover input' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -1151,7 +1215,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'label'     => __( 'Border Hover Color', 'moomoo-extensions-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="submit"]:hover, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="button"]:hover' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_button:hover' => 'border-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1162,7 +1226,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'name'     => 'button_background_hover_color',
 				'label'    => __( 'Background Color', 'moomoo-extensions-elementor' ),
 				'types'    => array( 'classic', 'gradient' ),
-				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="submit"]:hover, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="button"]:hover',
+				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_button:hover'
 			)
 		);
 
@@ -1175,11 +1239,11 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 					'border_border!' => '',
 				),
 				'selectors' => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="submit"]:hover, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container input[type="button"]:hover' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_button:hover' => 'border-color: {{VALUE}};',
 				),
 			)
 		);
-
+		
 		$this->end_controls_tab();
 
 		$this->end_controls_tabs();
@@ -1201,7 +1265,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_next_button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_next_button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				)
 				
 			)
@@ -1214,7 +1278,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'size_units' => array( 'px', 'em', '%' ),
 				//'allowed_dimensions' => array('top', 'bottom'),
 				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_next_button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_next_button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				),
 				
 			)
@@ -1226,7 +1290,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_next_button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_next_button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1235,7 +1299,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'next_button_box_shadow',
-				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_next_button',
+				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_next_button',
 			)
 		);
 
@@ -1257,7 +1321,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_next_button' => 'width: {{SIZE}}{{UNIT}};'
+                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_next_button' => 'width: {{SIZE}}{{UNIT}};'
                 ],
             ]
         );
@@ -1277,7 +1341,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
                 'label' => __( 'Text Color', 'moomoo-extensions-elementor' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_next_button' => 'color: {{VALUE}}'
+                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_next_button input' => 'color: {{VALUE}}'
                 ],
             ]
         );
@@ -1288,7 +1352,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				[
 					'name' => 'next_button_border',
 					'label' => esc_html__( 'Border Color', 'moomoo-extensions-elementor' ),
-					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_next_button',
+					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_next_button',
 				]
 			);
 
@@ -1299,7 +1363,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 					'name' => 'bg-next-button',
 					'label' => __( 'Background', 'moomoo-extensions-elementor' ),
 					'types' => [ 'classic', 'gradient'],
-					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_next_button'
+					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_next_button'
 				] 
 			);
 				
@@ -1319,7 +1383,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 	                'label' => __( 'Text Color', 'moomoo-extensions-elementor' ),
 	                'type' => Controls_Manager::COLOR,
 	                'selectors' => [
-	                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_next_button:hover' => 'color: {{VALUE}}'
+	                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .effect.gform_next_button:hover input' => 'color: {{VALUE}}'
 	                ],
 	            ]
 	        );
@@ -1329,7 +1393,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				[
 					'name' => 'next_button_border_hover',
 					'label' => esc_html__( 'Border hover', 'moomoo-extensions-elementor' ),
-					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_next_button:hover',
+					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .effect.gform_next_button:hover',
 				]
 			);
 		//background hover
@@ -1339,7 +1403,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 					'name' => 'bg-next-button-hover',
 					'label' => __( 'Background hover', 'moomoo-extensions-elementor' ),
 					'types' => [ 'classic', 'gradient'],
-					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_next_button:hover'
+					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .effect.gform_next_button:hover'
 				] 
 			);
 
@@ -1363,7 +1427,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_previous_button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_previous_button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				)
 			)
 		);
@@ -1376,7 +1440,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'size_units' => array( 'px', 'em', '%' ),
 				//'allowed_dimensions' => array('top', 'bottom'),
 				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_previous_button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_previous_button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				),
 				
 			)
@@ -1389,7 +1453,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_previous_button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_previous_button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1398,7 +1462,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'prev_button_box_shadow',
-				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_previous_button',
+				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_previous_button',
 			)
 		);
 		//prev width
@@ -1420,7 +1484,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_previous_button' => 'width: {{SIZE}}{{UNIT}};'
+                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_previous_button' => 'width: {{SIZE}}{{UNIT}};'
                 ],
             ]
         );
@@ -1440,7 +1504,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 	                'label' => __( 'Text color', 'moomoo-extensions-elementor' ),
 	                'type' => Controls_Manager::COLOR,
 	                'selectors' => [
-	                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_previous_button' => 'color: {{VALUE}}'
+	                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_previous_button input' => 'color: {{VALUE}}'
 	                ],
 	            ]
 	        );
@@ -1450,7 +1514,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				[
 					'name' => 'previous_button_border',
 					'label' => esc_html__( 'Border', 'moomoo-extensions-elementor' ),
-					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_previous_button',
+					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_previous_button',
 				]
 			);
        	// background
@@ -1460,7 +1524,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 					'name' => 'bg-prev-button',
 					'label' => __( 'Previous Button', 'moomoo-extensions-elementor' ),
 					'types' => [ 'classic', 'gradient'],
-					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_previous_button'
+					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_previous_button'
 				] 
 			);		
 		
@@ -1478,7 +1542,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 	                'label' => __( 'Text color', 'moomoo-extensions-elementor' ),
 	                'type' => Controls_Manager::COLOR,
 	                'selectors' => [
-	                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_previous_button:hover' => 'color: {{VALUE}}'
+	                    '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_previous_button:hover input' => 'color: {{VALUE}}'
 	                ],
 	            ]
 	        );
@@ -1489,7 +1553,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				[
 					'name' => 'previous_button_border_hover',
 					'label' => esc_html__( 'Border Hover', 'moomoo-extensions-elementor' ),
-					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_previous_button:hover',
+					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_previous_button:hover',
 				]
 			);
        	// background hover
@@ -1499,7 +1563,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 					'name' => 'bg-prev-button-hover',
 					'label' => __( 'Background Hover', 'moomoo-extensions-elementor' ),
 					'types' => [ 'classic', 'gradient'],
-					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_page_footer .gform_previous_button:hover'
+					'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .effect.gform_previous_button:hover'
 				] 
 			);
 		
@@ -1651,9 +1715,9 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 			array(
 				'label'     => __( 'Message Color', 'moomoo-extensions-elementor' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '#ff0000',
+				'default'   => '#c02b0a',
 				'selectors' => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gfield_description.validation_message' => 'color: {{VALUE}}',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .gfield_validation_message, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .validation_message' => 'color: {{VALUE}}',
 				),
 			)
 		);
@@ -1661,7 +1725,8 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'gf_message_typo',				
-				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper form .gfield_description.validation_message',
+				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .gfield_validation_message, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .validation_message, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .validation_error h2,
+					{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_validation_errors h2',
 			)
 		);
 		$this->add_responsive_control(
@@ -1671,7 +1736,8 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper form .gfield_description.validation_message' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .gfield_validation_message, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .validation_message, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .validation_error,
+					{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_validation_errors' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1685,7 +1751,7 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				'label_off'    => __( 'No', 'moomoo-extensions-elementor' ),
 				'return_value' => 'yes',
 				'default'      => '',
-				'prefix_class' => 'uael-gf-error-',
+				'prefix_class' => 'mm-gf-error-',
 			)
 		);
 
@@ -1699,7 +1765,8 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 						'form_error_field_background!' => '',
 					),
 					'selectors' => array(
-						'{{WRAPPER}}.uael-gf-error-yes .gform_wrapper form .gfield_description.validation_message' => 'background-color: {{VALUE}};',
+						'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .gfield_validation_message, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .validation_message, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .validation_error,
+					{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_validation_errors' => 'background-color: {{VALUE}};',
 					),
 				)
 			);
@@ -1708,137 +1775,34 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 				array(
 					'label'     => __( 'Highlight Border Color', 'moomoo-extensions-elementor' ),
 					'type'      => Controls_Manager::COLOR,
-					'default'   => '#ff0000',
+					'default'   => '#c02b0a',
 					'condition' => array(
 						'form_error_field_background!' => '',
 					),
 					'selectors' => array(
-						'{{WRAPPER}}.uael-gf-error-yes .gform_wrapper li.gfield_error input:not([type="submit"]):not([type="button"]):not([type="image"]),
-						 {{WRAPPER}}.uael-gf-error-yes .gform_wrapper .gfield_error .ginput_container select,
-						 {{WRAPPER}}.uael-gf-error-yes .gform_wrapper .gfield_error .ginput_container .chosen-single,
-						 {{WRAPPER}}.uael-gf-error-yes .gform_wrapper .gfield_error .ginput_container textarea,
-						 {{WRAPPER}}.uael-gf-error-yes .gform_wrapper li.gfield.gfield_error,
-						 {{WRAPPER}}.uael-gf-error-yes .gform_wrapper li.gfield.gfield_error.gfield_contains_required.gfield_creditcard_warning,
-						 {{WRAPPER}}.uael-gf-error-yes li.gfield_error .gfield_checkbox input[type="checkbox"] + label:before,
-						 {{WRAPPER}}.uael-gf-error-yes li.gfield_error .ginput_container_consent input[type="checkbox"] + label:before,
-						 {{WRAPPER}}.uael-gf-error-yes li.gfield_error .gfield_radio input[type="radio"] + label:before,
-						 {{WRAPPER}}:not(.uael-gf-check-default-yes).uael-gf-error-yes li.gfield_error .gfield_radio .gchoice_label label:before' => 'border-color: {{VALUE}};',
-						'{{WRAPPER}}.uael-gf-error-yes .gform_wrapper li.gfield_error input[type="text"]' =>
-						'border: {{input_border_size.BOTTOM}}px {{input_border_style.VALUE}} {{VALUE}} !important;',
-						'{{WRAPPER}}elementor-widget-moomoo-gravity-form .elementor-widget-container-underline.uael-gf-error-yes .gform_wrapper li.gfield_error input[type="text"]' =>
-						'border-width: 0 0 {{gf_border_bottom.SIZE}}px 0 !important; border-style: solid; border-color:{{VALUE}};',
-						'{{WRAPPER}}.uael-gf-error-yes .gform_wrapper form .gfield_description.validation_message'=>'border-color:{{VALUE}}'
+						'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .gfield_validation_message, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .validation_message, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .validation_error h2,
+					{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_validation_errors h2'=>'border-color:{{VALUE}}'
 					),
 				)
 			);
 
-		$this->add_control(
-			'form_validation_message',
-			array(
-				'label'     => __( 'Form Error Validation', 'moomoo-extensions-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
-			)
-		);
-
-		$this->add_control(
-			'form_valid_message_color',
-			array(
-				'label'     => __( 'Error Message Color', 'moomoo-extensions-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '#cccccc',
-				'selectors' => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.validation_error,
-					{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.gform_validation_errors h2' => 'color: {{VALUE}}',
-				),
-			)
-		);
-
-		$this->add_control(
-			'form_valid_bgcolor',
-			array(
-				'label'     => __( 'Error Message Background Color', 'moomoo-extensions-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '',
-				'selectors' => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.validation_error,
-					{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.gform_validation_errors' => 'background-color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->add_control(
-			'form_valid_border_color',
-			array(
-				'label'     => __( 'Error Message Border Color', 'moomoo-extensions-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '#ff0000',
-				'selectors' => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.validation_error,
-					{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.gform_validation_errors' => 'border-color: {{VALUE}} !important;',
-				),
-			)
-		);
-
 		$this->add_responsive_control(
-			'form_border_size',
+			'error_massage_border_radius',
 			array(
-				'label'      => __( 'Border Size', 'moomoo-extensions-elementor' ),
+				'label'      => __( 'Border Radius', 'moomoo-extensions-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%' ),
+				'size_units' => array( 'px' ),
 				'default'    => array(
-					'top'    => '2',
-					'bottom' => '2',
-					'left'   => '2',
-					'right'  => '2',
+					'top'    => '0',
+					'bottom' => '0',
+					'left'   => '0',
+					'right'  => '0',
 					'unit'   => 'px',
 				),
 				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.validation_error,
-					{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.gform_validation_errors' => 'border-top: {{TOP}}{{UNIT}}; border-right: {{RIGHT}}{{UNIT}}; border-bottom: {{BOTTOM}}{{UNIT}}; border-left: {{LEFT}}{{UNIT}}; border-style: solid;',
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .gfield_validation_message, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .gform_wrapper .validation_message, {{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .validation_error,
+					{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper .gform_validation_errors' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
-			)
-		);
-
-		$this->add_control(
-			'form_valid_border_radius',
-			array(
-				'label'      => __( 'Rounded Corners', 'moomoo-extensions-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', '%' ),
-				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.validation_error,
-					{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.gform_validation_errors' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->add_responsive_control(
-			'form_valid_message_padding',
-			array(
-				'label'      => __( 'Message Padding', 'moomoo-extensions-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%' ),
-				'default'    => array(
-					'top'    => '10',
-					'bottom' => '10',
-					'left'   => '10',
-					'right'  => '10',
-					'unit'   => 'px',
-				),
-				'selectors'  => array(
-					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.validation_error,
-					{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.gform_validation_errors' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'cf7_error_validation_typo',				
-				'selector' => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.validation_error h2,
-				{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gform_wrapper div.gform_validation_errors h2',
 			)
 		);
 
@@ -2094,6 +2058,33 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 					'{{WRAPPER}} .uael-gf-form-title' => 'color: {{VALUE}};',
 				),
 
+			)
+		);
+		$this->add_control(
+			'gf_progressbar_title',
+			array(
+				'label'     => __( 'Progressbar Title', 'moomoo-extensions-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before'
+			)
+		);
+		$this->add_control(
+			'form_progressbar_color',
+			array(
+				'label'     => __( 'Color', 'moomoo-extensions-elementor' ),
+				'type'      => Controls_Manager::COLOR,				
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gf_progressbar_title,{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gf_progressbar_title span ' => 'color: {{VALUE}};',
+				),
+
+			)
+		);
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'      => 'progressbar_typography',				
+				'selector'  => '{{WRAPPER}}.elementor-widget-moomoo-gravity-form .elementor-widget-container .gf_progressbar_title'
 			)
 		);
 

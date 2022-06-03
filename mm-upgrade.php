@@ -2,7 +2,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-
+if( !function_exists('get_plugin_data') ){
+    require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+}
 if( ! class_exists( 'moomooUpgradePlugin' ) ) {
 
 	class moomooUpgradePlugin{
@@ -14,7 +16,10 @@ if( ! class_exists( 'moomooUpgradePlugin' ) ) {
 
 		public function __construct() {
 
-			$plugin_data = get_plugin_data( plugin_dir_path(__FILE__).'/'.MM_PLUGIN_NAME_MAIN_FILE);	
+			$plugin_data['Version'] = '1.2.8';
+			if ( is_admin() ) {
+				$plugin_data = get_plugin_data( plugin_dir_path(__FILE__).'/'.MM_PLUGIN_NAME_MAIN_FILE);	
+			}				
 			$this->current_version = $plugin_data['Version'];
 			$this->cache_key = 'moomoo_upgrade';
 			$this->cache_allowed = false;
