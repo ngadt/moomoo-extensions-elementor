@@ -167,7 +167,7 @@ final class Moomoo_Element_Extension {
         require_once(__DIR__ . '/../widgets/moomoo-banner-post.php' );
         require_once(__DIR__ . '/../widgets/moomoo-categories-string.php' );
         require_once(__DIR__ . '/../widgets/moomoo-icon-list.php' );
-
+        require_once(__DIR__ . '/../widgets/moomoo-calculate-stamp-duty.php' );
     }
     
     public function register_widgets() {
@@ -191,6 +191,7 @@ final class Moomoo_Element_Extension {
         $widgets_manager->register_widget_type( new \Elementor_Moomoo_Banner_Post()); 
         $widgets_manager->register_widget_type( new \Elementor_Moomoo_Categories_String());  
         $widgets_manager->register_widget_type( new \Elementor_Moomoo_Icon_List());  
+        $widgets_manager->register_widget_type( new \Elementor_Moomoo_Calculate_Stamp_Duty());  
 
     }
     

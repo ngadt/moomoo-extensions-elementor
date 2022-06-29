@@ -13,4 +13,7 @@
 @media(max-width:768px){
 }
 @media(max-width:520px){
+	.elementor-widget.elementor-mobile-align-center .elementor-icon-list-item, .elementor-widget.elementor-mobile-align-center .elementor-icon-list-item a{
+		text-align: center;
+	}
 }

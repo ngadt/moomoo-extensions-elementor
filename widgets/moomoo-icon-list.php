@@ -198,7 +198,7 @@ class Elementor_Moomoo_Icon_List extends \Elementor\Widget_Base {
                 'label_on' => __( 'Show', 'moomoo-extensions-elementor' ),
                 'label_off' => __( 'Hide', 'moomoo-extensions-elementor' ),
                 'return_value' => 'yes',
-                'default' => 'yes',
+                'default' => 'no',
                 'separator' => 'before',
                 'prefix_class' => 'moomoo-enable-popup-',
             ]

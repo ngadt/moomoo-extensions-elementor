@@ -41,8 +41,8 @@ class Elementor_Gravity_Form_Widget extends \Elementor\Widget_Base {
 		
 		wp_enqueue_style('mm-gravity-basic-form-widget', plugins_url('gravityforms/assets/css/dist/basic.min.css'), array(), '2.6.1.1');
 		wp_enqueue_style('mm-gravity-theme-widget', plugins_url('gravityforms/assets/css/dist/theme.min.css'), array(), '2.6.1.1');
-		wp_enqueue_style('mm-gravity-form-widget', MM_EXT_ASSET_URL .'/css/gravity-form-widget.css', array(), time());	
-		wp_enqueue_script('mm-gravity-form-widget',MM_EXT_ASSET_URL .'/js/gravity-form-widget.js',array('jquery'), time(), true);
+		wp_enqueue_style('mm-gravity-form-widget', MM_EXT_ASSET_URL .'/css/gravity-form-widget.css', array(), '1.2.9');	
+		wp_enqueue_script('mm-gravity-form-widget',MM_EXT_ASSET_URL .'/js/gravity-form-widget.js',array('jquery'), '1.2.9', true);
 		
 	}
 	protected function get_gravity_forms() {

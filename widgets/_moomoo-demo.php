@@ -27,7 +27,7 @@ class Elementor_Moomoo_Demo extends \Elementor\Widget_Base {
     }
 
     public function get_icon() {
-        return 'fab fa-image';
+        return 'fab fa-image';// https://fontawesome.com/search?s=solid%2Cbrands
     }
     
     public function get_categories() {

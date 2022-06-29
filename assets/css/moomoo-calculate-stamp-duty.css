@@ -1,0 +1,39 @@
+.moomoo-calculate-stamp-duty .calculator {padding: 0 15px 10px;display: block;line-height: 1.42857;color: #333;margin: 20px auto;}
+.moomoo-calculate-stamp-duty .calculator h2 { font-size: 22px; line-height: 30px; }
+.moomoo-calculate-stamp-duty .calculator .stamp-results h3 { color: #d0103a; font-size: 20px; line-height: 28px; font-weight: 400; }
+.moomoo-calculate-stamp-duty .calculator p.stamp-error { margin-top: 5px;color:#d0103a;}
+.moomoo-calculate-stamp-duty .calculator .input-field { display: flex; }
+.moomoo-calculate-stamp-duty .calculator .key,
+.moomoo-calculate-stamp-duty .calculator input {border: 1px solid #ccc;display: inline-block;vertical-align: middle;padding: 15px;border-radius: 0;}
+.moomoo-calculate-stamp-duty .calculator .key {border-right: none;background: #fefefe;color: #696a6f;min-width: 50px;font-weight: 700;font-size: 1rem;text-align: center;}
+.moomoo-calculate-stamp-duty .calculator label { margin: 25px 0 5px; display: block; }
+.moomoo-calculate-stamp-duty .calculator label span {display: block;font-size: .9em;font-weight: 400;padding-top: 8px;}
+.moomoo-calculate-stamp-duty .calculator input { width: calc(100% - 50px); outline: none; background-color: #fff; font-size: 14px }
+.moomoo-calculate-stamp-duty .calculator input.error { color: #333 !important }
+.moomoo-calculate-stamp-duty .calculator input:focus { border: 1px solid #92d2f4 }
+.moomoo-calculate-stamp-duty .calculator .checkbox input[type=checkbox] { position: absolute; width: 20px; height: 20px; top: 0; right: 0; visibility: hidden }
+.moomoo-calculate-stamp-duty .calculator .checkbox input[type=checkbox]:checked+label:after { content: ""; position: absolute; width: 11px; height: 6px; background: 0 0; top: 6px; left: 5px; border: 2px solid #4d4d4d; border-top: none; border-right: none; transform: rotate(-45deg); visibility: visible }
+.moomoo-calculate-stamp-duty .calculator .checkbox label { padding-left: 35px; position: relative; line-height: 20px }
+.moomoo-calculate-stamp-duty .calculator .checkbox label:before { content: ""; cursor: pointer; background: #fff; border: 1px solid #dfdfdf; position: absolute; width: 20px; height: 20px; top: 0; left: 0; visibility: visible }
+.moomoo-calculate-stamp-duty .calculator .checkbox-label { margin-top: 15px }
+.moomoo-calculate-stamp-duty .calculator .button:hover { background: #d0103a; color: #fff; }
+.moomoo-calculate-stamp-duty .calculator .button {margin: 10px 0;border: 1px solid #d0103a;color: #d0103a;padding: 8px 15px;outline: none;display: inline-block;cursor: pointer;margin: 20px 0;}
+.moomoo-calculate-stamp-duty .calculator .button:hover { background: #d0103a; color: #fff; }
+.moomoo-calculate-stamp-duty .calculator table {width: 100%;border-collapse: collapse;border-spacing: 0;background-color: transparent;}
+.moomoo-calculate-stamp-duty .calculator .results-list table {border-top: 1px solid #f1f1f1;border-bottom: 1px solid #f1f1f1;}
+.moomoo-calculate-stamp-duty .calculator .results-list table td:first-child { border-right: 1px solid #f1f1f1; }
+.moomoo-calculate-stamp-duty .calculator .results-list h5 { font-size: 16px; line-height: 24px; margin-top: 0; }
+.moomoo-calculate-stamp-duty .calculator .results-list table td:last-child { padding-left: 30px; }
+.moomoo-calculate-stamp-duty .calculator .results-list table td div { font-weight: 700; font-size: 30px }
+.moomoo-calculate-stamp-duty .calculator .results-list table td {width: 50%;padding: 20px 10px;border: 0;background: #fff;}
+.moomoo-calculate-stamp-duty .calculator .results-table h3 { margin: 40px 0 20px; border-bottom: 1px solid #f1f1f1; padding-bottom: 20px }
+.moomoo-calculate-stamp-duty .calculator .results-table table td,
+.moomoo-calculate-stamp-duty .calculator .results-table table th { padding: 10px; }
+.moomoo-calculate-stamp-duty .calculator .results-table table th { padding: 10px; text-align: left }
+.moomoo-calculate-stamp-duty .calculator .results-table table tr, .moomoo-calculate-stamp-duty .calculator .results-table table td, .moomoo-calculate-stamp-duty .calculator .results-table table th {border:none; background:#fff }
+.moomoo-calculate-stamp-duty .calculator .results-table table tr:first-child { border-bottom: 1px solid #d0103a }
+
+@media(max-width:768px){	
+}
+@media(max-width:520px){
+}

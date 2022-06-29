@@ -50,3 +50,7 @@ The Categories Moomoo Extensions Elementor extend some function for Elementor: p
 	7. Blink
 - Add new feature: style for progress bar
 - Add new feature: review all steps form
+
+= 1.3.0 - 2022-06-13 =
+- Fix bug Iconlist: fix bug style align on mobile
+- [New Element]: Property Calculate
